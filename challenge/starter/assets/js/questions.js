@@ -3,6 +3,7 @@ var startScrn = document.getElementById('start-screen');
 var questions = document.getElementById('questions');
 var choices = document.getElementById('choices');
 var body = document.body
+
 //Button Elements
 var startBtn = document.getElementById('start-button');
 var aBtn = document.getElementById('ansA');
@@ -15,78 +16,100 @@ var qTitle = document.getElementById('question-title');
 var qCode = document.getElementById('qCode');
 var qResult = document.getElementById('qResult');
 
+//Time
+var timeLeft = document.getElementById('time');
+var minute = 60000;
+var second = 1000;
+var totalTime = 1 * minute;
+
+
+var incorrectAU = document.getElementById('incorrectAU');
+var correctAU = document.getElementById('correctAU');
 //Misc
 
 var count = 0//Question counter
-// var correct = false;
+
+
+
+var timerTest = setInterval(function(){
+    console.log('bye')
+}  , 1000)
+function countdown() {
+    totalTime - 1000;
+    setInterval(countdown, 1000);
+}
+countdown();
+timeLeft.innerText = totalTime / 1000;
+
+
 
 //Questions Array
-var questionsList = [{
+var questionsList = [
+    { //1
+        question: 'In this code, what has the value of "2"',
+        qCode: 'function myFunction(x, y) {return x + y}; \n myFunction(2, 7)',
+        answerA: 'Reference',
+        answerB: 'Argument', //correct
+        answerC: 'Parameter',
+        AnswerD: 'Method',
+        correctAns: 'B'
+    },
 
-    question: 'In this code, what has the value of "2"',
-    qCode: 'function myFunction(x, y) {return x + y}; \n myFunction(2, 7)',
-    answerA: 'Reference',
-    answerB: 'Argument', //correct
-    answerC: 'Parameter',
-    AnswerD: 'Method',
-    correctAns: 'B'
-},
-{
-    question: 'question 2',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 3',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 4',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 5',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 6',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 7',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 8',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
-{
-    question: 'question 9',
-    answerA: 'answer A',
-    answerB: 'answer B',
-    answerC: 'answer C',
-    AnswerD: 'answer D'
-},
+    { //2
+        question: 'Which loop is best suited towards iterating over an array?',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+    { //3
+        question: 'Which of the following is the correct syntax?',
+        answerA: 'var X = "template literal string $(X, Y)',
+        answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
+        answerC: 'var X = `template literal string` `X`, `Y`',
+        AnswerD: 'var X = "template literal string {X Y}',
+        correctAns: 'B'
+    },
+
+    { //4
+        question: 'What does the acronym DOM stand for',
+        answerA: 'Digital Organization Mockup',
+        answerB: 'Direct Object Management',
+        answerC: 'Document Object Model', //correct
+        AnswerD: 'Dubious Old Man',
+        correctAns: 'C',
+        bonus: 'D'
+    },
+
+    { //5
+        question: '?',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+    { //5
+        question: '?',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+    { //6
+        question: '?',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
 ]
 // console.log(correct, 'correct')
 //Functions
@@ -102,7 +125,9 @@ choices.addEventListener('click', function () {
 startBtn.addEventListener('click', function () {
     startScrn.setAttribute('style', 'display:none;');
     questions.setAttribute('style', 'display:block;')
-    loadQ()
+    loadQ();
+
+
 }
 )
 // Populate Question HTML
@@ -122,8 +147,6 @@ aBtn.addEventListener('click', function () {
         incorrect();
     }
 })
-
-
 bBtn.addEventListener('click', function () {
     if (questionsList[count].correctAns === 'B') {
         correct();
@@ -132,27 +155,36 @@ bBtn.addEventListener('click', function () {
     }
 })
 cBtn.addEventListener('click', function () {
-    if (question[count].correctAns === 'C') {
+    if (questionsList[count].correctAns === 'C') {
         correct()
     } else {
         incorrect()
     }
 })
 dBtn.addEventListener('click', function () {
-    if (question[count].correctAns === 'D') {
+    if (questionsList[count].correctAns === 'D') {
         correct()
     } else {
         incorrect()
     }
+    if (questionsList[count].bonus === 'D') {
+        oldMan()
+    }
 })
-// correct();
+// correct()
 function correct() {
-    qResult.innerHTML = 'Nailed it!'
+    qResult.innerHTML = 'Nailed it!';
+    correctAU;
 }
+//incorrect()
 function incorrect() {
-
-    qResult.innerHTML = 'Bad luck!'
+    qResult.innerHTML = 'Bad luck!';
+    incorrectAU;
 }
 
 // }
+
+function oldMan() {
+    alert('I am an old man')
+}
 
