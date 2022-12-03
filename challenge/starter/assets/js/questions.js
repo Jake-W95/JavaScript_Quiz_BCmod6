@@ -18,7 +18,7 @@ var qResult = document.getElementById('qResult');
 
 //Time
 var timeLeft = document.getElementById('time');
-var minute = 60000;
+var minute = 6000;
 var second = 1000;
 var totalTime = 1 * minute;
 
@@ -28,17 +28,26 @@ var correctAU = document.getElementById('correctAU');
 //Misc
 
 var count = 0//Question counter
+console.log(totalTime)
+
+
+// var timerTest = setInterval(function(){
+//     console.log('bye')
+// }  , 1000)
+
+
+var countdown = setInterval(function(){ //WORKING COUNTDOWN
+    totalTime-=second;
+    if (totalTime <= 0){
+        clearInterval(countdown)
+    }
+console.log(totalTime)
+
+}, 1000)
 
 
 
-var timerTest = setInterval(function(){
-    console.log('bye')
-}  , 1000)
-function countdown() {
-    totalTime - 1000;
-    setInterval(countdown, 1000);
-}
-countdown();
+
 timeLeft.innerText = totalTime / 1000;
 
 
@@ -179,7 +188,7 @@ function correct() {
 //incorrect()
 function incorrect() {
     qResult.innerHTML = 'Bad luck!';
-    incorrectAU;
+    incorrectAU.onplay
 }
 
 // }
