@@ -1,1 +1,0 @@
-# JavaScript_Quiz_BCmod6
