@@ -20,7 +20,7 @@ var qResult = document.getElementById('qResult');
 var timeLeft = document.getElementById('time');
 var minute = 60000;
 var second = 1000;
-var totalTime = 0.5 * minute;
+var totalTime = 0.1 * minute;
 timeLeft.innerText = totalTime / 1000;
 
 
@@ -43,12 +43,15 @@ var countdown = setInterval(function () { //WORKING COUNTDOWN
     timeLeft.innerText = totalTime / 1000;
 
     console.log(totalTime);
-    if (totalTime <= 0) {
-        clearInterval(countdown)
-    }
+    if (totalTime/1000 == -1) {
+        clearInterval(countdown);
+        timeUp()
 
+    }
 }, 1000)
 
+// if (totalTime === 0){
+// }
 
 
 
@@ -190,10 +193,12 @@ function correct() {
 //incorrect()
 function incorrect() {
     qResult.innerHTML = 'Bad luck!';
-    totalTime -= (10*second);
+    totalTime -= (10 * second);
     incorrectAU.onplay
 }
-
+function timeUp() {
+    alert("Time's UP!")
+}
 // }
 
 function oldMan() {
