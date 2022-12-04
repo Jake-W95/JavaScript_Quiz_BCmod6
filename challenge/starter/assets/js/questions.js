@@ -15,29 +15,94 @@ var dBtn = document.getElementById('ansD');
 var qTitle = document.getElementById('question-title');
 var qCode = document.getElementById('qCode');
 var qResult = document.getElementById('qResult');
+//Questions!!!!
+var questionsList = [
+    { //1
+        question: 'In this code, what has the value of "2"',
+        qCode: 'function myFunction(x, y) {return x + y}; \n myFunction(2, 7)',
+        answerA: 'Reference',
+        answerB: 'Argument', //correct
+        answerC: 'Parameter',
+        AnswerD: 'Method',
+        correctAns: 'B'
+    },
 
+    { //2
+        question: 'Which loop is best suited towards iterating over an array?',
+        qCode: '',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+    { //3
+        question: 'Which of the following is the correct syntax?',
+        qCode: '',
+        answerA: 'var X = "template literal string $(X, Y)',
+        answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
+        answerC: 'var X = `template literal string` `X`, `Y`',
+        AnswerD: 'var X = "template literal string {X Y}',
+        correctAns: 'B'
+    },
+
+    { //4
+        question: 'What does the acronym DOM stand for',
+        qCode: '',
+        answerA: 'Digital Organization Mockup',
+        answerB: 'Direct Object Management',
+        answerC: 'Document Object Model', //correct
+        AnswerD: 'Dubious Old Man',
+        correctAns: 'C',
+        bonus: 'D'
+    },
+
+    { //5
+        question: 'Which of the following matches the resulting array?',
+        qCode: "var colours = ['blue', 'orange', 'mauve', 'red']; colours.splice(2, 1, 'green', 'grey')",
+        answerA:  "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']", 
+        answerB: "var colours = ['blue', 'orange', 'green', 'grey', 'red']", //correct
+        answerC: "var colours = ['blue', 'green', 'grey', 'red']",
+        AnswerD:  "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
+        correctAns: 'B'
+    },
+
+    { //6
+        question: '?',
+        qCode: '',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+    { //7
+        question: '?',
+        qCode: '',
+        answerA: 'For In',
+        answerB: 'While',
+        answerC: 'For of', //correct
+        AnswerD: 'do/while',
+        correctAns: 'C'
+    },
+
+]
 //Time
 var timeLeft = document.getElementById('time');
 var minute = 60000;
 var second = 1000;
-var totalTime = 0.1 * minute;
+var totalTime = questionsList.length * (6 * second);
 timeLeft.innerText = totalTime / 1000;
 
-
-
+//Misc
+var count = 0//Question counter
 var incorrectAU = document.getElementById('incorrectAU');
 var correctAU = document.getElementById('correctAU');
-//Misc
-
-var count = 0//Question counter
 console.log(totalTime)
 
-
-// var timerTest = setInterval(function(){
-//     console.log('bye')
-// }  , 1000)
-
-
+//COUNTDOWN
 var countdown = setInterval(function () { //WORKING COUNTDOWN
     totalTime -= second;
     timeLeft.innerText = totalTime / 1000;
@@ -46,16 +111,9 @@ var countdown = setInterval(function () { //WORKING COUNTDOWN
     if (totalTime/1000 == -1) {
         clearInterval(countdown);
         timeUp()
-
+timeLeft.innerText = 0;
     }
 }, 1000)
-
-// if (totalTime === 0){
-// }
-
-
-
-
 
 //Questions Array
 var questionsList = [
@@ -71,6 +129,7 @@ var questionsList = [
 
     { //2
         question: 'Which loop is best suited towards iterating over an array?',
+        qCode: '',
         answerA: 'For In',
         answerB: 'While',
         answerC: 'For of', //correct
@@ -80,6 +139,7 @@ var questionsList = [
 
     { //3
         question: 'Which of the following is the correct syntax?',
+        qCode: '',
         answerA: 'var X = "template literal string $(X, Y)',
         answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
         answerC: 'var X = `template literal string` `X`, `Y`',
@@ -89,6 +149,7 @@ var questionsList = [
 
     { //4
         question: 'What does the acronym DOM stand for',
+        qCode: '',
         answerA: 'Digital Organization Mockup',
         answerB: 'Direct Object Management',
         answerC: 'Document Object Model', //correct
@@ -98,16 +159,18 @@ var questionsList = [
     },
 
     { //5
-        question: '?',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
-        correctAns: 'C'
+        question: 'Which of the following matches the resulting array?',
+        qCode: "var colours = ['blue', 'orange', 'mauve', 'red']; colours.splice(2, 1, 'green', 'grey')",
+        answerA:  "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']", 
+        answerB: "var colours = ['blue', 'orange', 'green', 'grey', 'red']", //correct
+        answerC: "var colours = ['blue', 'green', 'grey', 'red']",
+        AnswerD:  "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
+        correctAns: 'B'
     },
 
     { //5
         question: '?',
+        qCode: '',
         answerA: 'For In',
         answerB: 'While',
         answerC: 'For of', //correct
@@ -117,6 +180,7 @@ var questionsList = [
 
     { //6
         question: '?',
+        qCode: '',
         answerA: 'For In',
         answerB: 'While',
         answerC: 'For of', //correct
@@ -202,6 +266,12 @@ function timeUp() {
 // }
 
 function oldMan() {
-    alert('I am an old man')
+    alert('I am an old man');
+    totalTime += 20*second;
+    qResult.innerHTML = 'Old Man Bonus! Extra 10 seconds!'
 }
 
+
+
+
+// console.log(colours)
