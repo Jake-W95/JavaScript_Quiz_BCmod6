@@ -93,7 +93,7 @@ var questionsList = [
 var timeLeft = document.getElementById('time');
 var minute = 60000;
 var second = 1000;
-var totalTime = questionsList.length * (6 * second);
+var totalTime = questionsList.length * (12 * second);
 timeLeft.innerText = totalTime / 1000;
 
 //Misc
@@ -103,17 +103,7 @@ var correctAU = document.getElementById('correctAU');
 console.log(totalTime)
 
 //COUNTDOWN
-var countdown = setInterval(function () { //WORKING COUNTDOWN
-    totalTime -= second;
-    timeLeft.innerText = totalTime / 1000;
 
-    console.log(totalTime);
-    if (totalTime/1000 == -1) {
-        clearInterval(countdown);
-        timeUp()
-timeLeft.innerText = 0;
-    }
-}, 1000)
 
 //Questions Array
 var questionsList = [
@@ -197,6 +187,7 @@ choices.addEventListener('click', function () {
     count++;
     console.log(count);
     setTimeout(loadQ, 500);
+    
 }
 )
 // Start Quiz 
@@ -204,7 +195,17 @@ startBtn.addEventListener('click', function () {
     startScrn.setAttribute('style', 'display:none;');
     questions.setAttribute('style', 'display:block;')
     loadQ();
-
+    var countdown = setInterval(function () { //WORKING COUNTDOWN
+        totalTime -= second;
+        timeLeft.innerText = totalTime / 1000;
+    
+        console.log(totalTime);
+        if (totalTime/1000 == -1) {
+            clearInterval(countdown);
+            timeUp()
+    timeLeft.innerText = 0;
+        }
+    }, 1000)
 
 }
 )
