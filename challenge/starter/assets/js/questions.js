@@ -61,10 +61,10 @@ var questionsList = [
     { //5
         question: 'Which of the following matches the resulting array?',
         qCode: "var colours = ['blue', 'orange', 'mauve', 'red']; colours.splice(2, 1, 'green', 'grey')",
-        answerA:  "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']", 
+        answerA: "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']",
         answerB: "var colours = ['blue', 'orange', 'green', 'grey', 'red']", //correct
         answerC: "var colours = ['blue', 'green', 'grey', 'red']",
-        AnswerD:  "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
+        AnswerD: "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
         correctAns: 'B'
     },
 
@@ -97,12 +97,10 @@ var totalTime = questionsList.length * (12 * second);
 timeLeft.innerText = totalTime / 1000;
 
 //Misc
-var count = 0//Question counter
+var Q7_Code = document.getElementById('Q7_Code');
+var count = 0;   //Question counter
 var incorrectAU = document.getElementById('incorrectAU');
 var correctAU = document.getElementById('correctAU');
-console.log(totalTime)
-
-//COUNTDOWN
 
 
 //Questions Array
@@ -151,43 +149,67 @@ var questionsList = [
     { //5
         question: 'Which of the following matches the resulting array?',
         qCode: "var colours = ['blue', 'orange', 'mauve', 'red']; colours.splice(2, 1, 'green', 'grey')",
-        answerA:  "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']", 
+        answerA: "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']",
         answerB: "var colours = ['blue', 'orange', 'green', 'grey', 'red']", //correct
         answerC: "var colours = ['blue', 'green', 'grey', 'red']",
-        AnswerD:  "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
+        AnswerD: "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
         correctAns: 'B'
     },
 
-    { //5
-        question: '?',
-        qCode: '',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
-        correctAns: 'C'
-    },
-
     { //6
-        question: '?',
+        question: 'An Object saved to local storage is saved as what?',
         qCode: '',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
+        answerA: 'Object',
+        answerB: 'Array',
+        answerC: 'String', //correct
+        AnswerD: 'Variable',
         correctAns: 'C'
     },
 
+    { //7
+        question: 'Which of the following best describes "Persistent Data"?',
+        qCode: '',
+        answerA: 'Data that is stored in the browser indefinately', //correct
+        answerB: 'Data that persistenytly updates based on certain criteria',
+        answerC: 'Data that keeps asking for the same thing',
+        AnswerD: 'Data that cannot be removed or edited',
+        correctAns: 'A'
+    },
+    { //8
+        question: 'Which of the following methods would you use to effect the third list item?',
+        qCode: '',
+        answerA: 'document.getElementsByClassName("listItem")[3]',
+        answerB: 'document.getElementsByClass("3")',
+        answerC: 'document.getElementsByID("3")',
+        AnswerD: 'document.getElementByID("3")', //correct,
+        correctAns: 'D'
+    },
+    { //9
+        question: '?',
+        qCode: '',
+        answerA: '', //correct
+        answerB: '',
+        answerC: '',
+        AnswerD: '',
+        correctAns: ''
+    },
+    { //10
+        question: '?',
+        qCode: '',
+        answerA: '', //correct
+        answerB: '',
+        answerC: '',
+        AnswerD: '',
+        correctAns: ''
+    },
 ]
-// console.log(correct, 'correct')
-//Functions
+
 
 // Next Question
 choices.addEventListener('click', function () {
     count++;
-    console.log(count);
+    // console.log(count);
     setTimeout(loadQ, 500);
-    
 }
 )
 // Start Quiz 
@@ -198,12 +220,12 @@ startBtn.addEventListener('click', function () {
     var countdown = setInterval(function () { //WORKING COUNTDOWN
         totalTime -= second;
         timeLeft.innerText = totalTime / 1000;
-    
-        console.log(totalTime);
-        if (totalTime/1000 == -1) {
+
+        // console.log(totalTime);
+        if (totalTime / 1000 == -1) {
             clearInterval(countdown);
             timeUp()
-    timeLeft.innerText = 0;
+            timeLeft.innerText = 0;
         }
     }, 1000)
 
@@ -218,7 +240,14 @@ function loadQ() {
     bBtn.innerHTML = Q.answerB;
     cBtn.innerHTML = Q.answerC;
     dBtn.innerHTML = Q.AnswerD;
+    if (count === 7) {
+        // qCode.setAttribute('style', 'display:none');
+        Q7_Code.setAttribute('style', 'display:block')
+    } else {
+        Q7_Code.setAttribute('style', 'display:none')
+    }
 }
+// Buttons
 aBtn.addEventListener('click', function () {
     if (questionsList[count].correctAns === 'A') {
         correct();
@@ -261,18 +290,14 @@ function incorrect() {
     totalTime -= (10 * second);
     incorrectAU.onplay
 }
+// Time's up
 function timeUp() {
     alert("Time's UP!")
 }
-// }
 
+// Easter Egg(s)
 function oldMan() {
     alert('I am an old man');
-    totalTime += 20*second;
+    totalTime += 20 * second;
     qResult.innerHTML = 'Old Man Bonus! Extra 10 seconds!'
 }
-
-
-
-
-// console.log(colours)
