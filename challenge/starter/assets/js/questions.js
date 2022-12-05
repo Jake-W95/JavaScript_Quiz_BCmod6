@@ -157,13 +157,13 @@ startBtn.addEventListener('click', function () {
 // Populate Question HTML
 function loadQ() {
     var Q = questionsList[count]
- 
-    if (count === questionsList.length){
-        userScore = timeLeft;
+    if (count === questionsList.length) {
+        userScore = timeLeft.innerHTML;
         alert('Quiz Finished');
-        console.log(timeLeft)
-    }
+        localStorage.setItem('userScore', userScore)
 
+        console.log(userScore)
+    }
     qTitle.innerHTML = Q.question;
     qCode.innerHTML = Q.qCode;
     aBtn.innerHTML = Q.answerA;
@@ -171,20 +171,17 @@ function loadQ() {
     cBtn.innerHTML = Q.answerC;
     dBtn.innerHTML = Q.AnswerD;
     if (count === 7) {
-        // qCode.setAttribute('style', 'display:none');
+
         Q7_Code.setAttribute('style', 'display:block')
     } else {
         Q7_Code.setAttribute('style', 'display:none')
     }
-
-    console.log(questionsList.length, 'length in LoadQ');
-    console.log(count, 'count in LoadQ');
 }
 // console.log(questionsList.length, 'length out LoadQ');
 //     console.log(count, 'count out LoadQ');
 // Buttons
 aBtn.addEventListener('click', function () {
-    
+
     if (questionsList[count].correctAns === 'A') {
         correct();
     } else {
@@ -232,7 +229,7 @@ function incorrect() {
 // )
 function timeUp() {
     alert("Time's UP!")
-    
+
 }
 
 
