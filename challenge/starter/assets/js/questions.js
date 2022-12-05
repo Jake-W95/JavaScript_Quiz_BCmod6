@@ -15,94 +15,6 @@ var dBtn = document.getElementById('ansD');
 var qTitle = document.getElementById('question-title');
 var qCode = document.getElementById('qCode');
 var qResult = document.getElementById('qResult');
-//Questions!!!!
-var questionsList = [
-    { //1
-        question: 'In this code, what has the value of "2"',
-        qCode: 'function myFunction(x, y) {return x + y}; \n myFunction(2, 7)',
-        answerA: 'Reference',
-        answerB: 'Argument', //correct
-        answerC: 'Parameter',
-        AnswerD: 'Method',
-        correctAns: 'B'
-    },
-
-    { //2
-        question: 'Which loop is best suited towards iterating over an array?',
-        qCode: '',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
-        correctAns: 'C'
-    },
-
-    { //3
-        question: 'Which of the following is the correct syntax?',
-        qCode: '',
-        answerA: 'var X = "template literal string $(X, Y)',
-        answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
-        answerC: 'var X = `template literal string` `X`, `Y`',
-        AnswerD: 'var X = "template literal string {X Y}',
-        correctAns: 'B'
-    },
-
-    { //4
-        question: 'What does the acronym DOM stand for',
-        qCode: '',
-        answerA: 'Digital Organization Mockup',
-        answerB: 'Direct Object Management',
-        answerC: 'Document Object Model', //correct
-        AnswerD: 'Dubious Old Man',
-        correctAns: 'C',
-        bonus: 'D'
-    },
-
-    { //5
-        question: 'Which of the following matches the resulting array?',
-        qCode: "var colours = ['blue', 'orange', 'mauve', 'red']; colours.splice(2, 1, 'green', 'grey')",
-        answerA: "var colours = ['blue', 'orange', 'mauve', 'red', 'green', 'grey']",
-        answerB: "var colours = ['blue', 'orange', 'green', 'grey', 'red']", //correct
-        answerC: "var colours = ['blue', 'green', 'grey', 'red']",
-        AnswerD: "var colours = ['green, 'grey', 'blue', 'orange', 'mauve', 'red']",
-        correctAns: 'B'
-    },
-
-    { //6
-        question: '?',
-        qCode: '',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
-        correctAns: 'C'
-    },
-
-    { //7
-        question: '?',
-        qCode: '',
-        answerA: 'For In',
-        answerB: 'While',
-        answerC: 'For of', //correct
-        AnswerD: 'do/while',
-        correctAns: 'C'
-    },
-
-]
-//Time
-var timeLeft = document.getElementById('time');
-var minute = 60000;
-var second = 1000;
-var totalTime = questionsList.length * (12 * second);
-timeLeft.innerText = totalTime / 1000;
-
-//Misc
-var Q7_Code = document.getElementById('Q7_Code');
-var count = 0;   //Question counter
-var incorrectAU = document.getElementById('incorrectAU');
-var correctAU = document.getElementById('correctAU');
-
-
 //Questions Array
 var questionsList = [
     { //1
@@ -184,25 +96,32 @@ var questionsList = [
         AnswerD: 'document.getElementByID("3")', //correct,
         correctAns: 'D'
     },
-    { //9
-        question: '?',
-        qCode: '',
-        answerA: '', //correct
-        answerB: '',
-        answerC: '',
-        AnswerD: '',
-        correctAns: ''
-    },
-    { //10
-        question: '?',
-        qCode: '',
-        answerA: '', //correct
-        answerB: '',
-        answerC: '',
-        AnswerD: '',
-        correctAns: ''
-    },
+    // { //9
+    //     question: '?',
+    //     qCode: '',
+    //     answerA: '', //correct
+    //     answerB: '',
+    //     answerC: '',
+    //     AnswerD: '',
+    //     correctAns: ''
+    // },
 ]
+
+//Time
+var timeLeft = document.getElementById('time');
+var minute = 60000;
+var second = 1000;
+var totalTime = questionsList.length * (12 * second);
+timeLeft.innerText = totalTime / 1000;
+
+//Misc
+var Q7_Code = document.getElementById('Q7_Code');
+var count = 0;   //Question counter
+var incorrectAU = document.getElementById('incorrectAU');
+var correctAU = document.getElementById('correctAU');
+var userScore = 0;
+
+
 
 
 // Next Question
@@ -210,8 +129,11 @@ choices.addEventListener('click', function () {
     count++;
     // console.log(count);
     setTimeout(loadQ, 500);
+    console.log(count)
+
 }
 )
+
 // Start Quiz 
 startBtn.addEventListener('click', function () {
     startScrn.setAttribute('style', 'display:none;');
@@ -231,9 +153,17 @@ startBtn.addEventListener('click', function () {
 
 }
 )
+
 // Populate Question HTML
 function loadQ() {
     var Q = questionsList[count]
+ 
+    if (count === questionsList.length){
+        userScore = timeLeft;
+        alert('Quiz Finished');
+        console.log(timeLeft)
+    }
+
     qTitle.innerHTML = Q.question;
     qCode.innerHTML = Q.qCode;
     aBtn.innerHTML = Q.answerA;
@@ -246,9 +176,15 @@ function loadQ() {
     } else {
         Q7_Code.setAttribute('style', 'display:none')
     }
+
+    console.log(questionsList.length, 'length in LoadQ');
+    console.log(count, 'count in LoadQ');
 }
+// console.log(questionsList.length, 'length out LoadQ');
+//     console.log(count, 'count out LoadQ');
 // Buttons
 aBtn.addEventListener('click', function () {
+    
     if (questionsList[count].correctAns === 'A') {
         correct();
     } else {
@@ -291,9 +227,14 @@ function incorrect() {
     incorrectAU.onplay
 }
 // Time's up
+// function scoreGrab (
+//     userScore = timeLeft
+// )
 function timeUp() {
     alert("Time's UP!")
+    
 }
+
 
 // Easter Egg(s)
 function oldMan() {
