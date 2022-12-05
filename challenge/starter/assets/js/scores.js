@@ -1,11 +1,12 @@
-var scoreboard = document.getElementById('highscores');
+var scoreboard = document.getElementsByClassName('place');
+// var place = scoreboard
 var userScore = localStorage.getItem('userScore');
-var first = document.getElementById('1');
+var saveBoard;
+// var loadBoard; JSON.parse(localStorage.getItem('board'))
+// var first = document.getElementById('1');
 var userName = ''
 
-
-getUserName()
-
+// console.log(place, 'place')
 function getUserName() {
     userName = prompt('Enter your name');
     if (userName.length > 10) {
@@ -13,16 +14,25 @@ function getUserName() {
         getUserName();
     }
 }
-first.innerHTML = `${userName}:   ${userScore}`
-// userName.length = 10;
+getUserName()
+var nameAndScore = `${userName}:  ${userScore}`
 
 
-console.log(userName)
+console.log(scoreboard, 'scoreboard')
+for (i in scoreboard){
+    console.log(scoreboard[i], 'scoreboardIndex')
 
-// for (place of scoreboard){
-//     if(userScore > place){
-//         place = userScore
-//     }
-// }
-console.log(userScore)
-console.log(scoreboard)
+
+    var placeScore = JSON.parse(scoreboard[i].innerHTML)
+
+    if (userScore > placeScore){
+        scoreboard[i].innerHTML = nameAndScore;
+        break
+    }
+    console.log(placeScore, 'PlaceScore')
+}
+
+console.log(
+localStorage.setItem('board', scoreboard)
+
+)
