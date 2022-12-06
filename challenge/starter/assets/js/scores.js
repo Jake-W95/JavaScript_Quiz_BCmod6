@@ -1,13 +1,11 @@
 var scoreboard = document.getElementsByClassName('place');
-// var place = scoreboard
 var userScore = localStorage.getItem('userScore');
-var saveBoard;
+var userName = '';
+var saveBoard = [];
 
 
 
-var userName = ''
 
-// console.log(place, 'place')
 function getUserName() {
     userName = prompt('Enter your name');
     if (userName.length > 10) {
@@ -17,33 +15,36 @@ function getUserName() {
 }
 getUserName()
 
-// var nameAndScore = `${userName}:  ${userScore}`
 
 
 
-console.log(scoreboard, 'scoreboard')
+
+
 for (i in scoreboard){
-    // console.log(scoreboard[i], 'scoreboardIndex')
+    
 var placeName = scoreboard[i].children[0];
 var placeScore = scoreboard[i].children[1];
 var placeScoreValue = JSON.parse(placeScore.innerHTML)
-console.log(placeScoreValue, 'value')
-// var placeScoreValue = JSON.parse(placeScore)
-console.log(placeName, 'pName')
+// console.log(placeScoreValue, 'value')
 
-    // var placeScore = JSON.parse(scoreboard[i].innerHTML)
-
+// console.log(placeName, 'pName')
     if (userScore > placeScoreValue){
-        // scoreboard[i].innerHTML = nameAndScore;
-        console.log(placeName, 'pName')
+        // console.log(placeName, 'pName')
         placeName.innerHTML = userName;
         placeScore.innerHTML = userScore;
         break
     }
-    // console.log(placeScore, 'PlaceScore')
+    
 }
 
-console.log(
-localStorage.setItem('board', scoreboard)
-
-)
+localStorage.setItem('1', JSON.stringify(scoreboard[0].innerHTML));
+localStorage.setItem('2', JSON.stringify(scoreboard[1].innerHTML));
+localStorage.setItem('3', JSON.stringify(scoreboard[2].innerHTML));
+localStorage.setItem('4', JSON.stringify(scoreboard[3].innerHTML));
+localStorage.setItem('5', JSON.stringify(scoreboard[4].innerHTML));
+localStorage.setItem('6', JSON.stringify(scoreboard[5].innerHTML));
+localStorage.setItem('7', JSON.stringify(scoreboard[6].innerHTML));
+localStorage.setItem('8', JSON.stringify(scoreboard[7].innerHTML));
+localStorage.setItem('9', JSON.stringify(scoreboard[8].innerHTML));
+localStorage.setItem('10', JSON.stringify(scoreboard[9].innerHTML));
+console.log(scoreboard[0], 'saveBoard')
