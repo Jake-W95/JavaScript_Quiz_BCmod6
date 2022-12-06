@@ -1,38 +1,44 @@
-var scoreboard = document.getElementsByClassName('place');
-// var place = scoreboard
-var userScore = localStorage.getItem('userScore');
-var saveBoard;
-// var loadBoard; JSON.parse(localStorage.getItem('board'))
-// var first = document.getElementById('1');
-var userName = ''
+var scoreboard = document.querySelectorAll('li');
+var i = 0;
+var userName;
 
-// console.log(place, 'place')
+var userScore = JSON.parse(localStorage.getItem('userScore'));
+
+
+
+
 function getUserName() {
     userName = prompt('Enter your name');
     if (userName.length > 10) {
         alert('Maximum 10 characters');
         getUserName();
     }
+    localStorage.setItem('userName', userName)
 }
 getUserName()
-var nameAndScore = `${userName}:  ${userScore}`
 
-
-console.log(scoreboard, 'scoreboard')
-for (i in scoreboard){
-    console.log(scoreboard[i], 'scoreboardIndex')
-
-
-    var placeScore = JSON.parse(scoreboard[i].innerHTML)
-
-    if (userScore > placeScore){
-        scoreboard[i].innerHTML = nameAndScore;
+for (i in scoreboard) {
+    var placeName = scoreboard[i].firstChild.lastChild.textContent;
+var placeScore = JSON.parse(scoreboard[i].lastChild.lastChild.nodeValue);
+    console.log(placeScore);
+    console.log(userScore)
+    if (userScore > placeScore) {
+        alert('balls')
+        placeName = userName
+        placeScore = userScore
         break
-    }
-    console.log(placeScore, 'PlaceScore')
+    } 
 }
+// localStorage.getItem('placeName1', scoreboard[i].firstChild.firstChild.innerHTML)
+// localStorage.getItem('placeScore1', scoreboard[i].firstChild.lastChild.innerHTML)
 
-console.log(
-localStorage.setItem('board', scoreboard)
+//     // else if (scoreboard.)  {
+//     //     alert('Oooh, didn\'t make it on the board')
+//     // }
+    
+    
+// }
 
-)
+// localStorage.setItem('scoreboard', JSON.stringify(document.body.div.ol))
+// console.log(document.getElementsByClassName('score'))
+// localStorage.setItem('scores', JSON.stringify(document.getElementsByClassName('score'))) 
