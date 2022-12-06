@@ -3,7 +3,35 @@ var userScore = localStorage.getItem('userScore');
 var userName = '';
 var saveBoard = [];
 var clearBoardBtn = document.getElementById('clear')
-console.log(scoreboard[0].childNodes[0])
+
+
+
+
+console.log(scoreboard[0].innerHTML)
+
+
+function getUserName() {
+    userName = prompt('Enter your name');
+    if (userName.length > 10) {
+        alert('Maximum 10 characters');
+        getUserName();
+    }
+    localStorage.setItem('userName', userName)
+}
+getUserName()
+
+for (i in scoreboard){
+var placeName = scoreboard[i].children[0];
+var placeScore = scoreboard[i].children[1];
+var placeScoreValue = JSON.parse(placeScore.innerHTML)
+    if (userScore > placeScoreValue){
+        // console.log(placeName, 'pName')
+        placeName.innerHTML = userName;
+        placeScore.innerHTML = userScore;
+        break
+    }
+}
+
 // if (scoreboard[0] == null){
     scoreboard[0].innerHTML = JSON.parse(localStorage.getItem('1'));
 // }
@@ -35,28 +63,8 @@ scoreboard[8].innerHTML = JSON.parse(localStorage.getItem('9'));
 scoreboard[9].innerHTML = JSON.parse(localStorage.getItem('10'));
 // }
 
-function getUserName() {
-    userName = prompt('Enter your name');
-    if (userName.length > 10) {
-        alert('Maximum 10 characters');
-        getUserName();
-    }
-    localStorage.setItem('userName', userName)
-}
-getUserName()
 
-for (i in scoreboard){
-var placeName = scoreboard[i].children[0];
-var placeScore = scoreboard[i].children[1];
-var placeScoreValue = JSON.parse(placeScore.innerHTML)
-    if (userScore > placeScoreValue){
-        // console.log(placeName, 'pName')
-        placeName.innerHTML = userName;
-        placeScore.innerHTML = userScore;
-        break
-    }
-    
-}
+
 localStorage.setItem('1', JSON.stringify(scoreboard[0].innerHTML));
 localStorage.setItem('2', JSON.stringify(scoreboard[1].innerHTML));
 localStorage.setItem('3', JSON.stringify(scoreboard[2].innerHTML));
@@ -71,3 +79,4 @@ localStorage.setItem('10', JSON.stringify(scoreboard[9].innerHTML));
 // clearBoardBtn.addEventListener('click', function(){
 //     localStorage.clear
 // })
+
