@@ -3,6 +3,16 @@ var userScore = localStorage.getItem('userScore');
 var userName = '';
 var saveBoard = [];
 
+scoreboard[0].innerHTML = JSON.parse(localStorage.getItem('1'))
+scoreboard[1].innerHTML = JSON.parse(localStorage.getItem('2'))
+scoreboard[2].innerHTML = JSON.parse(localStorage.getItem('3'))
+scoreboard[3].innerHTML = JSON.parse(localStorage.getItem('4'))
+scoreboard[4].innerHTML = JSON.parse(localStorage.getItem('5'))
+scoreboard[5].innerHTML = JSON.parse(localStorage.getItem('6'))
+scoreboard[6].innerHTML = JSON.parse(localStorage.getItem('7'))
+scoreboard[7].innerHTML = JSON.parse(localStorage.getItem('8'))
+scoreboard[8].innerHTML = JSON.parse(localStorage.getItem('9'))
+scoreboard[9].innerHTML = JSON.parse(localStorage.getItem('10'))
 
 
 
