@@ -44,10 +44,11 @@
     <div id="end-screen" class="hide">
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
-      <p>
+      <form action="highscores.html">
         Enter Name: <input type="text" id="userName" max="10" />
         <button id="submit" onclick="getUserName()">Submit Score To Scoreboard</button>
-      </p>
+      </form>
+      
     </div>
     <script>
       function getUserName() {

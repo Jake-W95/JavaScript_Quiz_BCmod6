@@ -1,40 +1,40 @@
 var scoreboard = document.getElementsByClassName('place');
 var userScore = localStorage.getItem('userScore');
-var userName = '';
+var userName = localStorage.getItem('userName');
 var saveBoard = [];
 var clearBoardBtn = document.getElementById('clear')
 
 
 
 
-console.log(scoreboard[0].innerHTML)
+console.log(userName)
 
 
-function getUserName() {
-    userName = prompt('Enter your name');
-    if (userName.length > 10) {
-        alert('Maximum 10 characters');
-        getUserName();
-    }
-    localStorage.setItem('userName', userName)
-}
-getUserName()
+// function getUserName() {
+//     userName = prompt('Enter your name');
+//     if (userName.length > 10) {
+//         alert('Maximum 10 characters');
+//         getUserName();
+//     }
+//     localStorage.setItem('userName', userName)
+// }
+// getUserName()
 
 for (i in scoreboard){
-var placeName = scoreboard[i].children[0];
-var placeScore = scoreboard[i].children[1];
-var placeScoreValue = JSON.parse(placeScore.innerHTML)
-    if (userScore > placeScoreValue){
-        // console.log(placeName, 'pName')
-        placeName.innerHTML = userName;
-        placeScore.innerHTML = userScore;
-        break
+    var placeName = scoreboard[i].children[0];
+    var placeScore = scoreboard[i].children[1];
+    var placeScoreValue = JSON.parse(placeScore.innerHTML)
+        if (userScore > placeScoreValue){
+            // console.log(placeName, 'pName')
+            placeName.textContent = userName;
+            placeScore.textContent = userScore;
+            break
+        }
     }
-}
 
-// if (scoreboard[0] == null){
+if (localStorage.getItem('1') != null){
     scoreboard[0].innerHTML = JSON.parse(localStorage.getItem('1'));
-// }
+}
 // if (scoreboard[1] == null){
 scoreboard[1].innerHTML = JSON.parse(localStorage.getItem('2'))
 // }
