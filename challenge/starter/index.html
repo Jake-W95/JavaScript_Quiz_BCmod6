@@ -45,10 +45,17 @@
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
       <p>
-        <!-- Enter Name: <input type="text" id="userName" max="10" /> -->
-        <button id="submit"><a href="highscores.html">To Scoreboard</a></button>
+        Enter Name: <input type="text" id="userName" max="10" />
+        <button id="submit" onclick="getUserName()">Submit Score To Scoreboard</button>
       </p>
     </div>
+    <script>
+      function getUserName() {
+        var userNameInput = document.getElementById('userName').value;
+        alert(userNameInput)
+        localStorage.setItem('userName', userNameInput)
+      }
+    </script>
 
     <div id="feedback" class="feedback hide"></div>
   </div>
@@ -60,16 +67,13 @@
 
 
 
-<audio autoplay>
-  <source id="correctAU" src="assets/sfx/correct.wav">
-  <source id="incorrectAU" src="assets/sfx/incorrect.wav">
+  <audio autoplay>
+    <source id="correctAU" src="assets/sfx/correct.wav">
+    <source id="incorrectAU" src="assets/sfx/incorrect.wav">
 
-</audio>
+  </audio>
   <script src="./assets/js/questions.js"></script>
   <!-- <script src="./assets/js/logic.js"></script> -->
 </body>
 
 </html>
-
-
-

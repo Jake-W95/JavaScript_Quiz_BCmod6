@@ -79,4 +79,3 @@ localStorage.setItem('10', JSON.stringify(scoreboard[9].innerHTML));
 // clearBoardBtn.addEventListener('click', function(){
 //     localStorage.clear
 // })
-
