@@ -44,18 +44,14 @@
     <div id="end-screen" class="hide">
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
-      <p>
-        Enter Name: <input type="text" id="userName" max="10" />
-        <button id="submit" onclick="getUserName()">Submit Score To Scoreboard</button>
-      </p>
+      <form action="./highscores.html">
+
+        Enter initials: <input type="text" id="initials" max="3" />
+        <button id="submit" onclick="getUserName()">Submit</button>
+
+      </form>
+      
     </div>
-    <script>
-      function getUserName() {
-        var userNameInput = document.getElementById('userName').value;
-        // alert(userNameInput)
-        localStorage.setItem('userName', userNameInput)
-      }
-    </script>
 
     <div id="feedback" class="feedback hide"></div>
   </div>
@@ -73,7 +69,11 @@
 
   </audio>
   <script src="./assets/js/questions.js"></script>
-  <!-- <script src="./assets/js/logic.js"></script> -->
+  <script src="./assets/js/scores.js"></script>
+  <SCRIpt>function getUserName() {
+      var userName = document.getElementById('initials').value
+      localStorage.setItem('userName', userName)
+    }</SCRIpt>
 </body>
 
 </html>

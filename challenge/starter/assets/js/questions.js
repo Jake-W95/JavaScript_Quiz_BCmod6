@@ -11,14 +11,15 @@ var aBtn = document.getElementById('ansA');
 var bBtn = document.getElementById('ansB');
 var cBtn = document.getElementById('ansC');
 var dBtn = document.getElementById('ansD');
-var submit = document.getElementById('submit');
 
 //Text Elements
 var qTitle = document.getElementById('question-title');
 var qCode = document.getElementById('qCode');
 var qResult = document.getElementById('qResult');
 var finalScore = document.getElementById('final-score')
-// var userName = 
+
+
+
 //Questions Array
 var questionsList = [
     { //1
@@ -41,15 +42,15 @@ var questionsList = [
         correctAns: 'C'
     },
 
-    // { //3
-    //     question: 'Which of the following is the correct syntax?',
-    //     qCode: '',
-    //     answerA: 'var X = "template literal string $(X, Y)',
-    //     answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
-    //     answerC: 'var X = `template literal string` `X`, `Y`',
-    //     AnswerD: 'var X = "template literal string {X Y}',
-    //     correctAns: 'B'
-    // },
+    { //3
+        question: 'Which of the following is the correct syntax?',
+        qCode: '',
+        answerA: 'var X = "template literal string $(X, Y)',
+        answerB: 'var X = `template literal string ${Y} ${Z}`', //correct
+        answerC: 'var X = `template literal string` `X`, `Y`',
+        AnswerD: 'var X = "template literal string {X Y}',
+        correctAns: 'B'
+    },
 
     // { //4
     //     question: 'What does the acronym DOM stand for',
@@ -133,7 +134,7 @@ choices.addEventListener('click', function () {
 // Start Quiz 
 startBtn.addEventListener('click', function () {
     startScrn.setAttribute('style', 'display:none;');
-    questions.setAttribute('style', 'display:block;');
+    questions.setAttribute('style', 'display:block;')
     loadQ();
     var countdown = setInterval(function () { //WORKING COUNTDOWN
         totalTime -= second;
@@ -142,27 +143,24 @@ startBtn.addEventListener('click', function () {
         // console.log(totalTime);
         if (totalTime / 1000 == -1) {
             clearInterval(countdown);
-            // timeUp()
+            timeUp()
             timeLeft.innerText = 0;
         }
     }, 1000)
 
 }
 )
-function quizEnd() {
-    questions.setAttribute('style', 'display:none');
-    endScreen.setAttribute('style', 'display:block')
-
-}
 
 // Populate Question HTML
 function loadQ() {
     var Q = questionsList[count]
     if (count === questionsList.length) {
+        questions.setAttribute('style', 'display:none;')
+        endScreen.setAttribute('style', 'display:block;')
         userScore = timeLeft.innerHTML;
-        finalScore.innerHTML = userScore;
+        finalScore.innerText = userScore
         localStorage.setItem('userScore', userScore)
-        quizEnd();
+
         console.log(userScore)
     }
     qTitle.innerHTML = Q.question;
@@ -224,8 +222,10 @@ function incorrect() {
     totalTime -= (10 * second);
     incorrectAU.onplay
 }
-
-
+// Time's up
+// function scoreGrab (
+//     userScore = timeLeft
+// )
 function timeUp() {
     alert("Time's UP!")
 
