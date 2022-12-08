@@ -1,47 +1,18 @@
 var scoreboard = document.getElementsByClassName('place');
 var userScore = localStorage.getItem('userScore');
-var userName = '';
-var saveBoard = [];
+var userName = localStorage.getItem('userName')
 var clearBoardBtn = document.getElementById('clear')
 var emptyPlace = document.getElementById('spare').querySelector('.place')
-// var reset = <li class = "place" > <p class="name"></p>: <p class="score">0</p> </li>;
-
-
-
-
-console.log(scoreboard[0].innerHTML)
-
-
-function getUserName() {
-    userName = prompt('Enter your name');
-    if (userName.length > 10) {
-        alert('Maximum 10 characters');
-        getUserName();
-    }
-    localStorage.setItem('userName', userName)
-}
-getUserName()
-console.log(scoreboard[0], '0inner')
 
     scoreboard[1].innerHTML = JSON.parse(localStorage.getItem('2'));
     scoreboard[2].innerHTML = JSON.parse(localStorage.getItem('3'));
-
-
     scoreboard[3].innerHTML = JSON.parse(localStorage.getItem('4'));
-
     scoreboard[4].innerHTML = JSON.parse(localStorage.getItem('5'));
-
     scoreboard[5].innerHTML = JSON.parse(localStorage.getItem('6'));
-
     scoreboard[6].innerHTML = JSON.parse(localStorage.getItem('7'));
-
     scoreboard[7].innerHTML = JSON.parse(localStorage.getItem('8'));
-
     scoreboard[8].innerHTML = JSON.parse(localStorage.getItem('9'));
-
     scoreboard[9].innerHTML = JSON.parse(localStorage.getItem('10'));
-
-
 
 for (i in scoreboard) {
     console.log(scoreboard[i])
@@ -52,13 +23,11 @@ for (i in scoreboard) {
     var placeScore = scoreboard[i].children[1];
     var placeScoreValue = JSON.parse(placeScore.innerHTML)
     if (userScore > placeScoreValue) {
-        // console.log(placeName, 'pName')
         placeName.innerHTML = userName;
         placeScore.innerHTML = userScore;
         break
     }
 }
-
 
 localStorage.setItem('1', JSON.stringify(scoreboard[0].innerHTML));
 localStorage.setItem('2', JSON.stringify(scoreboard[1].innerHTML));

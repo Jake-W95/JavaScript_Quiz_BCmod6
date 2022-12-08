@@ -45,14 +45,18 @@
       <h2>All done!</h2>
       <p>Your final score is <span id="final-score"></span>.</p>
       <p>
-        Enter Name: <input type="text" id="userName" max="10" />
-        <button id="submit" onclick="getUserName()">Submit Score To Scoreboard</button>
+        <form action="highscores.html">
+
+          Enter Name: <input type="text" id="userName" max="10" />
+          <button id="submit" onclick="getUserName()">Submit Score To Scoreboard</button>
+
+        </form>
       </p>
     </div>
     <script>
       function getUserName() {
         var userNameInput = document.getElementById('userName').value;
-        alert(userNameInput)
+        
         localStorage.setItem('userName', userNameInput)
       }
     </script>
